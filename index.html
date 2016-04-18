@@ -602,12 +602,22 @@
 
 <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 <script>
-$.getJSON('1.json',function(){
-  var b = 0;
-  for(var i = 0;i<10000000;i++){
-    b++;
-  }
-})
+function send(url) {
+            var request = new XMLHttpRequest();
+
+            request.open('get', url, true);
+            return request;
+
+        }
+var r = send('1.json');
+r.onreadystatechange = function() {
+    if (request.readyState == 4 && request.status == 200) {
+      var b = 0;
+      for(var i = 0;i<10000000;i++){
+        b++;
+      }
+    }
+}
 </script>
   
   
