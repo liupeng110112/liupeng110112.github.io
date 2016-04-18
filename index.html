@@ -605,6 +605,7 @@ function send(url) {
             var request = new XMLHttpRequest();
 
             request.open('get', url, true);
+            request.send();
             return request;
 
         }
