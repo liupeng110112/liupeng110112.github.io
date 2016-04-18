@@ -611,7 +611,7 @@ function send(url) {
         }
 var r = send('1.json');
 r.onreadystatechange = function() {
-    if (request.readyState == 4 && request.status == 200) {
+    if (r.readyState == 4 && R.status == 200) {
       var b = 0;
       for(var i = 0;i<10000000;i++){
         b++;
