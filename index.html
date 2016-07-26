@@ -62,7 +62,10 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="天天向上">
 <meta name="twitter:description">
-
+<script src="//dmc1acwvwny3.cloudfront.net/atatus.js"> </script>
+<script type="text/javascript"> atatus.config('00a3a9ef561747bbb94e79118b32ff61').install(); </script>
+<script type="text/javascript">window._trackJs = { token: 'b1b4e698be5a490fa85b630c15d24e51' };</script>
+<script type="text/javascript" src="https://d2zah9y47r7bi2.cloudfront.net/releases/current/tracker.js"></script>
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -947,7 +950,25 @@
     <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
   
 
+<script>
+function send(url) {
+            var request = new XMLHttpRequest();
 
+            request.open('get', url, true);
+            request.send();
+            return request;
+
+        }
+var r = send('1.json');
+r.onreadystatechange = function() {
+    if (r.readyState == 4 && r.status == 200) {
+      var b = 0;
+      for(var i = 0;i<10000000;i++){
+        b++;
+      }
+    }
+}
+</script>
   
   
 
