@@ -53,19 +53,22 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="前端可视化埋点采集目前常见的前端埋点技术，有三类：在某个控件操作发生时通过预先写好的代码来发数据的代码埋点；通过可视化界面配置控件操作与事件发生关系的可视化埋点；先收集所有数据再在后端筛选需要分析的对象的“无埋点”。
+先介绍下三种埋点（主要是web端）方式：
+代码埋点：就是直接在业务代码中嵌入相关代码。比如说需要统统计一个按钮的点击次数，需要将代码嵌入到指定的业务逻辑中，每点击一次向服务端连接一次">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://liupeng110112.github.io/2015/10/26/hello-world/index.html">
+<meta property="og:title" content="天天向上">
+<meta property="og:url" content="http://liupeng110112.github.io/2016/06/17/buried-point/index.html">
 <meta property="og:site_name" content="天天向上">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2015-10-26T13:15:48.000Z">
+<meta property="og:description" content="前端可视化埋点采集目前常见的前端埋点技术，有三类：在某个控件操作发生时通过预先写好的代码来发数据的代码埋点；通过可视化界面配置控件操作与事件发生关系的可视化埋点；先收集所有数据再在后端筛选需要分析的对象的“无埋点”。
+先介绍下三种埋点（主要是web端）方式：
+代码埋点：就是直接在业务代码中嵌入相关代码。比如说需要统统计一个按钮的点击次数，需要将代码嵌入到指定的业务逻辑中，每点击一次向服务端连接一次">
+<meta property="og:updated_time" content="2016-06-17T02:46:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="天天向上">
+<meta name="twitter:description" content="前端可视化埋点采集目前常见的前端埋点技术，有三类：在某个控件操作发生时通过预先写好的代码来发数据的代码埋点；通过可视化界面配置控件操作与事件发生关系的可视化埋点；先收集所有数据再在后端筛选需要分析的对象的“无埋点”。
+先介绍下三种埋点（主要是web端）方式：
+代码埋点：就是直接在业务代码中嵌入相关代码。比如说需要统统计一个按钮的点击次数，需要将代码嵌入到指定的业务逻辑中，每点击一次向服务端连接一次">
 
 
 
@@ -77,7 +80,7 @@ Quick">
   };
 </script>
 
-  <title> Hello World | 天天向上 </title>
+  <title>  | 天天向上 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -217,7 +220,7 @@ Quick">
             
             
               
-                Hello World
+                
               
             
           </h1>
@@ -226,8 +229,8 @@ Quick">
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-10-26T21:15:48+08:00" content="2015-10-26">
-              2015-10-26
+            <time itemprop="dateCreated" datetime="2016-06-17T10:46:44+08:00" content="2016-06-17">
+              2016-06-17
             </time>
           </span>
 
@@ -237,8 +240,8 @@ Quick">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/26/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/26/hello-world/" itemprop="commentsCount"></span>
+                <a href="/2016/06/17/buried-point/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/17/buried-point/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -257,15 +260,61 @@ Quick">
       
 
       
-        <span itemprop="articleBody"><p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <span itemprop="articleBody"><h2 id="前端可视化埋点采集">前端可视化埋点采集</h2><p>目前常见的前端埋点技术，有三类：在某个控件操作发生时通过预先写好的代码来发数据的代码埋点；通过可视化界面配置控件操作与事件发生关系的可视化埋点；先收集所有数据再在后端筛选需要分析的对象的“无埋点”。</p>
+<h3 id="先介绍下三种埋点（主要是web端）方式：">先介绍下三种埋点（主要是web端）方式：</h3><ul>
+<li>代码埋点：就是直接在业务代码中嵌入相关代码。比如说需要统统计一个按钮的点击次数，需要将代码嵌入到指定的业务逻辑中，每点击一次向服务端连接一次<ul>
+<li>优点: <ul>
+<li>埋点的使用者可以精确地选择什么时候发送数据</li>
+<li>可以自定义属性以及事件，传递丰富的数据到服务端</li>
+</ul>
+</li>
+<li>缺点：埋点代价大，每一个埋点需要手写代码，而且需要一定的技术支持</li>
+</ul>
+</li>
+<li>可视化埋点：由于代码埋点以上的缺点，所以有了可视化埋点的衍生，可视化埋点的精髓在于通过在网站的页面上进行可视化配置，然后保存到服务端。需要埋点的应用通过引入相关的核心代码，来加载之前保存的配置信息，来对页面中需要记录的数据进行统计。<ul>
+<li>优点：<ul>
+<li>解决了代码埋点的埋点代价大问题</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>可视化埋点能够覆盖的功能有限</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>无埋点：无埋点和可视化埋点类似，二者的区别就是可视化埋点先通过界面配置哪些控件的操作数据需要收集；“无埋点”则是先尽可能收集所有的控件的操作数据，然后再通过界面配置哪些数据需要在系统里面进行分析<ul>
+<li>优点：相对于可视化埋点，解决了数据“回溯”的问题，例如，在某一天，突然想增加某个控件的点击的分析，如果是可视化埋点方案，则只能从这一时刻向后收集数据，而如果是“无埋点”，则从部署 SDK 的时候数据就一直都在收集了；另一方面，“无埋点”方案也可以自动获取很多启发性的信息，例如，“无埋点”可以告诉使用者这个界面上每个控件分别被点击的概率是多大，哪些控件值得做更进一步的分析等等</li>
+<li>缺点：所有的控件事件都全部搜集，会给服务器和网络传输带来更大的负载</li>
+</ul>
+</li>
+</ul>
+<p>###目前UEM采用的是无埋点来采集数据，主要记录了几种数据：</p>
+<ul>
+<li>基础数据：如操作系统，浏览器版本，当前平台（pc还是mobile），来源等</li>
+<li>页面数据：页面地址，title,是否有错误,操作来源相关数据，页面加载的各个时间点</li>
+<li>资源数据： 主要是收集js,css,images相关的加载信息</li>
+<li>错误数据：记录了错误信息，行数，列数等</li>
+<li>ajax数据： 记录ajax的操作时间点 如请求开始时间 、结束时间、执行时间等</li>
+</ul>
+<h3 id="记录遇到的问题：">记录遇到的问题：</h3><ul>
+<li><p>select的change事件不支持冒泡，在顶层无法监听到select发出的ajax请求</p>
+</li>
+<li><p>目前元素的selector选择器太长了 需要改进</p>
+</li>
+<li><p>如何监听到页面中元素发起的ajax请求</p>
+</li>
+<li><p>iframe如果是嵌入不同域的内容 开发者工具和父级不能访问iframe页面元素</p>
+</li>
+<li><p>监听ajax会有个碰撞的数据不正确概率发生 。如何减少这种碰撞的概率或者直接去除掉？ 减少事件类型的监控只监听click mousedown keyup等</p>
+</li>
+<li><p>采集上报的xhr请求中包含非常长的文本 原因是由于上报碰撞的原因导致。如何过滤这种情况 。由于采集代码的原因，会出现这种碰撞情况（点击页面中的元素的时候正好发了一个ajax请求，两者会关联起来，这个元素是比较大得范围 取到的text比较大，造成文本特别多的情况）对于这种没有办法去解决 ，准备采用判断text的长度来取过滤掉 ，会有特殊情况下得数据丢失</p>
+</li>
+<li><p>一个事件函数绑定了回调函数，而且父级绑定了函数的话，冒泡的速度要比ajax打开连接快 这里解决上面碰撞的问题就是在xhr请求open的时候的时间戳要比冒泡过程中触发的时间戳要小 才可以记录，这样避免了如果在点击元素之前有过xhr请求的话，冒泡会与之前的xhr请求进行匹配 </p>
+<p>监控ajax请求准确性： 1）需要过滤掉非xhr事件操作  2）捕获ajax请求的时间戳要小于冒泡中回调函数的时间戳</p>
+</li>
+<li><p>IEedge 报script1014错误: 编码不对会引起注释错误 会报invalid character</p>
+</li>
+</ul>
 </span>
       
     </div>
@@ -277,12 +326,16 @@ Quick">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2015/11/04/Interview/" rel="next" title="关于面试">
+                <i class="fa fa-chevron-left"></i> 关于面试
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/10/26/My-New-Post/" rel="prev" title="My New Post">
-                My New Post <i class="fa fa-chevron-right"></i>
+              <a href="/2016/07/25/ajax-callback-timing/" rel="prev" title="浅谈抓取异步请求回调函数执行时间">
+                浅谈抓取异步请求回调函数执行时间 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -310,8 +363,8 @@ Quick">
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/10/26/hello-world/"
-           data-title="Hello World" data-url="http://liupeng110112.github.io/2015/10/26/hello-world/">
+      <div class="ds-thread" data-thread-key="2016/06/17/buried-point/"
+           data-title="" data-url="http://liupeng110112.github.io/2016/06/17/buried-point/">
       </div>
     
   </div>
@@ -411,7 +464,7 @@ Quick">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick_Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create_a_new_post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run_server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate_static_files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy_to_remote_sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前端可视化埋点采集"><span class="nav-number">1.</span> <span class="nav-text">前端可视化埋点采集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先介绍下三种埋点（主要是web端）方式："><span class="nav-number">1.1.</span> <span class="nav-text">先介绍下三种埋点（主要是web端）方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#记录遇到的问题："><span class="nav-number">1.2.</span> <span class="nav-text">记录遇到的问题：</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

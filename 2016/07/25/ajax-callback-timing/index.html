@@ -37,7 +37,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ajax回调,性能," />
 
 
 
@@ -53,15 +53,20 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="天天向上">
-<meta property="og:url" content="http://liupeng110112.github.io/index.html">
+<meta name="description" content="前言目前各大浏览器的升级都对性能的提升做了不断的优化，用户对体验的敏感度也越来越高，很多产品都开始注重用户的体验，出现了很多用户体验监控产品，像国外的newrelic、dynatrace,以及国内的uyun(优云)、oneapm等。作为一个前端开发者，重点关注点在Web性能上。Web的性能度量大致可分为两个部分，一部分是页面及外部资源的加载时间，另一部分则是用户与页面的交互过程中的展现时间。第一部">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈抓取异步请求回调函数执行时间">
+<meta property="og:url" content="http://liupeng110112.github.io/2016/07/25/ajax-callback-timing/index.html">
 <meta property="og:site_name" content="天天向上">
-<meta property="og:description">
+<meta property="og:description" content="前言目前各大浏览器的升级都对性能的提升做了不断的优化，用户对体验的敏感度也越来越高，很多产品都开始注重用户的体验，出现了很多用户体验监控产品，像国外的newrelic、dynatrace,以及国内的uyun(优云)、oneapm等。作为一个前端开发者，重点关注点在Web性能上。Web的性能度量大致可分为两个部分，一部分是页面及外部资源的加载时间，另一部分则是用户与页面的交互过程中的展现时间。第一部">
+<meta property="og:image" content="http://liupeng110112.github.io/img/front.png">
+<meta property="og:image" content="http://liupeng110112.github.io/img/model.png">
+<meta property="og:image" content="http://liupeng110112.github.io/img/time.png">
+<meta property="og:image" content="http://liupeng110112.github.io/img/ajax.png">
+<meta property="og:updated_time" content="2016-07-26T06:00:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="天天向上">
-<meta name="twitter:description">
+<meta name="twitter:title" content="浅谈抓取异步请求回调函数执行时间">
+<meta name="twitter:description" content="前言目前各大浏览器的升级都对性能的提升做了不断的优化，用户对体验的敏感度也越来越高，很多产品都开始注重用户的体验，出现了很多用户体验监控产品，像国外的newrelic、dynatrace,以及国内的uyun(优云)、oneapm等。作为一个前端开发者，重点关注点在Web性能上。Web的性能度量大致可分为两个部分，一部分是页面及外部资源的加载时间，另一部分则是用户与页面的交互过程中的展现时间。第一部">
 
 
 
@@ -73,7 +78,7 @@
   };
 </script>
 
-  <title> 天天向上 </title>
+  <title> 浅谈抓取异步请求回调函数执行时间 | 天天向上 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -94,9 +99,7 @@
 
 
 
-  <div class="container one-column 
-   page-home 
-">
+  <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -193,24 +196,9 @@
       <div class="main-inner">
         <div id="content" class="content">
           
-  <section id="posts" class="posts-expand">
 
+  <div id="posts" class="posts-expand">
     
-
-    
-    
-      
-      
-        
-        
-        
-      
-
-      
-    
-
-    
-      
 
   
   
@@ -230,10 +218,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/07/25/ajax-callback-timing/" itemprop="url">
-                  浅谈抓取异步请求回调函数执行时间
-                </a>
+                浅谈抓取异步请求回调函数执行时间
               
             
           </h1>
@@ -273,10 +258,7 @@
       
 
       
-        
-          <span itemprop="articleBody">
-            
-              <h2 id="前言">前言</h2><p>目前各大浏览器的升级都对性能的提升做了不断的优化，用户对体验的敏感度也越来越高，很多产品都开始注重用户的体验，出现了很多用户体验监控产品，<br>像国外的newrelic、dynatrace,以及国内的uyun(优云)、oneapm等。作为一个前端开发者，重点关注点在Web性能上。Web的性能度量大致可分为两个部分，一部分是页面及外部资源的加载时间，另一部分则是用户与页面的交互过程中的展现时间。第一部分有很多相应的优化方案，<br>比如cdn，css sprites;第二部分现在也有相关框架，如现在的React提出的virtual dom，就是减少在视图层面最终展现的时间。</p>
+        <span itemprop="articleBody"><h2 id="前言">前言</h2><p>目前各大浏览器的升级都对性能的提升做了不断的优化，用户对体验的敏感度也越来越高，很多产品都开始注重用户的体验，出现了很多用户体验监控产品，<br>像国外的newrelic、dynatrace,以及国内的uyun(优云)、oneapm等。作为一个前端开发者，重点关注点在Web性能上。Web的性能度量大致可分为两个部分，一部分是页面及外部资源的加载时间，另一部分则是用户与页面的交互过程中的展现时间。第一部分有很多相应的优化方案，<br>比如cdn，css sprites;第二部分现在也有相关框架，如现在的React提出的virtual dom，就是减少在视图层面最终展现的时间。</p>
 <h2 id="百分之八十的时间在前端">百分之八十的时间在前端</h2><p>相信大多数前端在文章中看到过类似的话，其实在多数人心里并没有什么概念，前端还能有这么大“作用”。其实这里的时间主要还是花在客户端而不是前端，这里的客户端主要包括CSS和Dom解析，<br>js代码执行等。前端能控制的是我们的js执行代码，dom操作，以及CSS样式规则，真正的解析和渲染得由浏览器去完成，当然两者是相辅相成的。在介绍其他之前先看下面一张图(采用优云web监控到的一个内部分享系统截图)：<br>​    <img src="/img/front.png" alt=""></p>
 <p>可以看到响应时间这列，蓝色的代表客户端时间，绿色代码网络传输时间，紫色的代表服务端时间,从图中可以看到客户端时间占比是最长的，所以我们应该相信前辈没骗我们，O(∩_∩)O~</p>
 <h2 id="传统的计算回调函数执行时间">传统的计算回调函数执行时间</h2><p>现在有下面一个函数：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> doSomething = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    reallyDoSomething();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -316,446 +298,48 @@
 <p>下面是优云web监控到单页应用的一张截图：<br>​    <img src="/img/ajax.png" alt=""></p>
 <p>通过优云web，我们可以很好的看出在ajax交互中的时间占比，尤其在单页应用中，大部分都是采用ajax交互，能帮助管理者提升应用的性能，追求更好的体验。</p>
 <p>相关链接<br><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2014/10/event-loop.html</a></p>
-
-            
-          </span>
-        
+</span>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/17/buried-point/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-06-17T10:46:44+08:00" content="2016-06-17">
-              2016-06-17
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/ajax回调/" rel="tag">#ajax回调</a>
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/17/buried-point/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/17/buried-point/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
+            <a href="/tags/性能/" rel="tag">#性能</a>
           
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
       
 
       
-        
-          <span itemprop="articleBody">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <h2 id="前端可视化埋点采集">前端可视化埋点采集</h2><p>目前常见的前端埋点技术，有三类：在某个控件操作发生时通过预先写好的代码来发数据的代码埋点；通过可视化界面配置控件操作与事件发生关系的可视化埋点；先收集所有数据再在后端筛选需要分析的对象的“无埋点”。</p>
-<h3 id="先介绍下三种埋点（主要是web端）方式：">先介绍下三种埋点（主要是web端）方式：</h3><ul>
-<li>代码埋点：就是直接在业务代码中嵌入相关代码。比如说需要统统计一个按钮的点击次数，需要将代码嵌入到指定的业务逻辑中，每点击一次向服务端连接一次<ul>
-<li>优点: <ul>
-<li>埋点的使用者可以精确地选择什么时候发送数据</li>
-<li>可以自定义属性以及事件，传递丰富的数据到服务端</li>
-</ul>
-</li>
-<li>缺点：埋点代价大，每一个埋点需要手写代码，而且需要一定的技术支持</li>
-</ul>
-</li>
-<li>可视化埋点：由于代码埋点以上的缺点，所以有了可视化埋点的衍生，可视化埋点的精髓在于通过在网站的页面上进行可视化配置，然后保存到服务端。需要埋点的应用通过引入相关的核心代码，来加载之前保存的配置信息，来对页面中需要记录的数据进行统计。<ul>
-<li>优点：<ul>
-<li>解决了代码埋点的埋点代价大问题</li>
-</ul>
-</li>
-<li>缺点<ul>
-<li>可视化埋点能够覆盖的功能有限</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>无埋点：无埋点和可视化埋点类似，二者的区别就是可视化埋点先通过界面配置哪些控件的操作数据需要收集；“无埋点”则是先尽可能收集所有的控件的操作数据，然后再通过界面配置哪些数据需要在系统里面进行分析<ul>
-<li>优点：相对于可视化埋点，解决了数据“回溯”的问题，例如，在某一天，突然想增加某个控件的点击的分析，如果是可视化埋点方案，则只能从这一时刻向后收集数据，而如果是“无埋点”，则从部署 SDK 的时候数据就一直都在收集了；另一方面，“无埋点”方案也可以自动获取很多启发性的信息，例如，“无埋点”可以告诉使用者这个界面上每个控件分别被点击的概率是多大，哪些控件值得做更进一步的分析等等</li>
-<li>缺点：所有的控件事件都全部搜集，会给服务器和网络传输带来更大的负载</li>
-</ul>
-</li>
-</ul>
-<p>###目前UEM采用的是无埋点来采集数据，主要记录了几种数据：</p>
-<ul>
-<li>基础数据：如操作系统，浏览器版本，当前平台（pc还是mobile），来源等</li>
-<li>页面数据：页面地址，title,是否有错误,操作来源相关数据，页面加载的各个时间点</li>
-<li>资源数据： 主要是收集js,css,images相关的加载信息</li>
-<li>错误数据：记录了错误信息，行数，列数等</li>
-<li>ajax数据： 记录ajax的操作时间点 如请求开始时间 、结束时间、执行时间等</li>
-</ul>
-<h3 id="记录遇到的问题：">记录遇到的问题：</h3><ul>
-<li><p>select的change事件不支持冒泡，在顶层无法监听到select发出的ajax请求</p>
-</li>
-<li><p>目前元素的selector选择器太长了 需要改进</p>
-</li>
-<li><p>如何监听到页面中元素发起的ajax请求</p>
-</li>
-<li><p>iframe如果是嵌入不同域的内容 开发者工具和父级不能访问iframe页面元素</p>
-</li>
-<li><p>监听ajax会有个碰撞的数据不正确概率发生 。如何减少这种碰撞的概率或者直接去除掉？ 减少事件类型的监控只监听click mousedown keyup等</p>
-</li>
-<li><p>采集上报的xhr请求中包含非常长的文本 原因是由于上报碰撞的原因导致。如何过滤这种情况 。由于采集代码的原因，会出现这种碰撞情况（点击页面中的元素的时候正好发了一个ajax请求，两者会关联起来，这个元素是比较大得范围 取到的text比较大，造成文本特别多的情况）对于这种没有办法去解决 ，准备采用判断text的长度来取过滤掉 ，会有特殊情况下得数据丢失</p>
-</li>
-<li><p>一个事件函数绑定了回调函数，而且父级绑定了函数的话，冒泡的速度要比ajax打开连接快 这里解决上面碰撞的问题就是在xhr请求open的时候的时间戳要比冒泡过程中触发的时间戳要小 才可以记录，这样避免了如果在点击元素之前有过xhr请求的话，冒泡会与之前的xhr请求进行匹配 </p>
-<p>监控ajax请求准确性： 1）需要过滤掉非xhr事件操作  2）捕获ajax请求的时间戳要小于冒泡中回调函数的时间戳</p>
-</li>
-<li><p>IEedge 报script1014错误: 编码不对会引起注释错误 会报invalid character</p>
-</li>
-</ul>
-
+              <a href="/2016/06/17/buried-point/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
             
-          </span>
-        
-      
-    </div>
+          </div>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2015/11/04/Interview/" itemprop="url">
-                  关于面试
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-11-04T22:25:42+08:00" content="2015-11-04">
-              2015-11-04
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/11/04/Interview/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/04/Interview/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
       
 
       
-        
-          <span itemprop="articleBody">
-            
-              <p>在公司呆得这段时间内也面试过一些前端，当然面试的前端都不是大牛，自身也是小菜，但是断断续续下来也有点自己的感悟。</p>
-<p>面试，是一个面和试的过程。面，其实就是和面试者第一次面对面接触，主要问下相关的技术情况，项目经验，以及其他方面的东西（包括对加班，住在哪里等）。只有面过了，才会有试这个过程。当然面也有这个试的过程，比如笔试，但是如果你不是非常有经验的话在短短几十分钟或者数小时内较难试出是否真正适合，只能说技术上符合你的要求，但是软技能上还是有待考证的。我想大多数的面试都很难100%达到面试官的要求，当然也不可能招到百分之百合适的人。</p>
-<p>面试通过首先是技术官“认可”你，然后薪资期望和公司对该职位的预期比较符合。认可打了引号是因为面试官可能并不认可你，但是因为业务需求急需人，或者当前不满足，期望你之后能满足。反之，面试也是面试者对面试这家公司的面试，初步考察下这家公司是否符合自己的预期（主要是从薪资上，个人成长以及工作环境等其他因素）。面试是两方面的，是一个相互了解的过程，是非常需要重视的一个环节</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/26/My-New-Post/" itemprop="url">
-                  My New Post
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-10-26T21:24:26+08:00" content="2015-10-26">
-              2015-10-26
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/26/My-New-Post/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/26/My-New-Post/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              
-            
-          </span>
-        
+    <div class="post-spread">
       
     </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/26/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-10-26T21:15:48+08:00" content="2015-10-26">
-              2015-10-26
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/26/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/26/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-
-  </section>
-
-  
+  </div>
 
 
         </div>
@@ -764,6 +348,14 @@
 
 
         
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/25/ajax-callback-timing/"
+           data-title="浅谈抓取异步请求回调函数执行时间" data-url="http://liupeng110112.github.io/2016/07/25/ajax-callback-timing/">
+      </div>
+    
+  </div>
+
 
       </div>
 
@@ -784,8 +376,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" src="https://avatars0.githubusercontent.com/u/2655916?v=3&amp;s=460" alt="刘鹏" itemprop="image"/>
           <p class="site-author-name" itemprop="name">刘鹏</p>
@@ -840,6 +441,23 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#百分之八十的时间在前端"><span class="nav-number">2.</span> <span class="nav-text">百分之八十的时间在前端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传统的计算回调函数执行时间"><span class="nav-number">3.</span> <span class="nav-text">传统的计算回调函数执行时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单介绍下js单线程"><span class="nav-number">4.</span> <span class="nav-text">简单介绍下js单线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Javascript的执行模型"><span class="nav-number">5.</span> <span class="nav-text">Javascript的执行模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在不影响源代码的基础上计算ajax回调函数的执行时间"><span class="nav-number">6.</span> <span class="nav-text">如何在不影响源代码的基础上计算ajax回调函数的执行时间</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
       
 
     </div>
@@ -927,6 +545,167 @@
   <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
 
   <script type="text/javascript" src="/js/bootstrap.js"></script>
 
