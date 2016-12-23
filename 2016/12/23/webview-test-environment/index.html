@@ -37,7 +37,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="genymotion,webview,移动端调试," />
 
 
 
@@ -53,16 +53,22 @@
 
 
 
-<meta name="description">
+<meta name="description" content="前言  最近有个需求在webview里和客户端进行通信（传递webview里面相关的操作数据，做过移动前端的都知道在和客户端打通的时候，经常会出现“编码一分钟，测试一小时“，毫不夸张的说测试的时间是编码的数倍以上。我们常见调试的做法如下：
+
+安装和客户端相同的环境（比如android studio,xcode等），把相关的代码移植过来，巴拉巴拉一大推配置，各种不兼容 （重新下载），蛋碎，从配置到放">
 <meta property="og:type" content="article">
-<meta property="og:title" content="My New Post">
-<meta property="og:url" content="http://liupeng110112.github.io/2015/10/26/My-New-Post/index.html">
+<meta property="og:title" content="搭建最舒适的webview调试环境">
+<meta property="og:url" content="http://liupeng110112.github.io/2016/12/23/webview-test-environment/index.html">
 <meta property="og:site_name" content="天天向上">
-<meta property="og:description">
-<meta property="og:updated_time" content="2015-10-26T13:24:26.000Z">
+<meta property="og:description" content="前言  最近有个需求在webview里和客户端进行通信（传递webview里面相关的操作数据，做过移动前端的都知道在和客户端打通的时候，经常会出现“编码一分钟，测试一小时“，毫不夸张的说测试的时间是编码的数倍以上。我们常见调试的做法如下：
+
+安装和客户端相同的环境（比如android studio,xcode等），把相关的代码移植过来，巴拉巴拉一大推配置，各种不兼容 （重新下载），蛋碎，从配置到放">
+<meta property="og:updated_time" content="2016-12-23T07:37:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="My New Post">
-<meta name="twitter:description">
+<meta name="twitter:title" content="搭建最舒适的webview调试环境">
+<meta name="twitter:description" content="前言  最近有个需求在webview里和客户端进行通信（传递webview里面相关的操作数据，做过移动前端的都知道在和客户端打通的时候，经常会出现“编码一分钟，测试一小时“，毫不夸张的说测试的时间是编码的数倍以上。我们常见调试的做法如下：
+
+安装和客户端相同的环境（比如android studio,xcode等），把相关的代码移植过来，巴拉巴拉一大推配置，各种不兼容 （重新下载），蛋碎，从配置到放">
 
 
 
@@ -74,7 +80,7 @@
   };
 </script>
 
-  <title> My New Post | 天天向上 </title>
+  <title> 搭建最舒适的webview调试环境 | 天天向上 </title>
   <script> (function(win, doc) {win.YYRUM = {}; YYRUM.info = {appId:'GDwSa8lELz03Ou0alkdkgsS67IHFX7Pp',beacon:'https://web.uyun.cn/connect', agent: 'https://web.uyun.cn/buriedPoint/YYRUM.js'}; var loadSource = {createScript: function(src) {var d = doc, f = d.getElementsByTagName('script')[0], s = d.createElement('script'); s.type = 'text/javascript'; s.src = src; f.parentNode.insertBefore(s, f); return s; } }; var script = loadSource.createScript(YYRUM.info.agent); win.onerror = function(msg, url, line, col, error) {YYRUM.info.errorData = {msg: msg, url: url, line: line, col: col, error: error } }; if (script.readyState){   script.onreadystatechange = function() {if (script.readyState == 'loaded' || script.readyState == 'complete') {script.onreadystatechange = null; YYRUM.report.installGlobalHandler() } }; } else { script.onload = function() {YYRUM.report.installGlobalHandler() }; } })(window, document) </script>
 </head>
 
@@ -215,7 +221,7 @@
             
             
               
-                My New Post
+                搭建最舒适的webview调试环境
               
             
           </h1>
@@ -224,8 +230,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-10-26T21:24:26+08:00" content="2015-10-26">
-              2015-10-26
+            <time itemprop="dateCreated" datetime="2016-12-23T00:00:00+08:00" content="2016-12-23">
+              2016-12-23
             </time>
           </span>
 
@@ -235,8 +241,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/26/My-New-Post/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/26/My-New-Post/" itemprop="commentsCount"></span>
+                <a href="/2016/12/23/webview-test-environment/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/23/webview-test-environment/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -255,28 +261,53 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><h1 id="前言">前言</h1><p>  最近有个需求在webview里和客户端进行通信（传递webview里面相关的操作数据，做过移动前端的都知道在和客户端打通的时候，经常会出现“编码一分钟，测试一小时“，毫不夸张的说测试的时间是编码的数倍以上。我们常见调试的做法如下：</p>
+<ul>
+<li>安装和客户端相同的环境（比如android studio,xcode等），把相关的代码移植过来，巴拉巴拉一大推配置，各种不兼容 （重新下载），蛋碎，从配置到放弃 (当然这种方式对常用的已经足够了，因为只在当前的代码里执行，但是对于采集的覆盖率太少了)</li>
+<li>直接安装apk到手机上，采用各种工具（比如weinre），配置相关代理，然后盯着手机开始调试了，低着头看手机颈椎还能好好玩耍么，另外被老板看到，感觉一直在玩手机啊！！！</li>
+</ul>
+<p><code>PS：以上是针对webview里面的调试，如果是单纯的移动端调试有很多其他工具。</code></p>
+<h1 id="如何舒适">如何舒适</h1><p>进入正题，由于做的是采集端，所以是想采集哪个数据就想采集哪个数据，比如天猫，京东等电子商务网站（没错选择这些下手是因为他们肯定会有webview）。最好的方式调试应该是这样的：<br>1.有个模拟器安装各种app（不用低头看手机了）<br>2.有个截包工具，将应用的js映射到本地（这里主要是为了将部署代码嵌入进去）<br>3.映射后直接在线调试 （在线编码看效果）<br><a id="more"></a><br>经过一番搜索我们可以开开心心的调试了，所需要的工具如下：</p>
+<ul>
+<li>genymotion是一款安卓模拟器，号称最快的模拟（用过相关开发工具的模拟器，以及手机调试简直无法忍受，速度奇慢）官网地址：<a href="https://www.genymotion.com/" target="_blank" rel="external">https://www.genymotion.com/</a> ，各个平台的都有，需要注意的事genymotion的运行需要安卓一个viralbox</li>
+<li>调试工具就是大家最熟悉的chrome调试工具,在genymotion运行app后，采用chrome的调试工具能找到app里webview页面 （开启调试命令：chrome://inspect）</li>
+<li>截包工具采用的是charles 具体的使用方法如下：<a href="http://blog.devtang.com/2015/11/14/charles-introduction/" target="_blank" rel="external">http://blog.devtang.com/2015/11/14/charles-introduction/</a> ，这是mac平台的，window平台可以采用fiddler，charles还有很多其他功能可以使用，这里需要做映射</li>
+</ul>
+<h1 id="采坑">采坑</h1><p>搭建这个环境的时候踩了以下一些坑：</p>
+<ul>
+<li>genymotion 需要安装虚拟机 有很多版本，但是很多版本下 chrome找不到页面</li>
+<li>charles不能和翻墙工具一同使用，否则抓不到数据，抓包时需要关闭</li>
+<li>genymotion 安装不了app (需要下载arm包才能安装)，另外genymotion安装app会出现failed（偶发性）</li>
+</ul>
+<h1 id="参考地址">参考地址</h1><p><a href="http://div.io/topic/1449" target="_blank" rel="external">http://div.io/topic/1449</a><br><a href="http://blog.devtang.com/2015/11/14/charles-introduction/" target="_blank" rel="external">http://blog.devtang.com/2015/11/14/charles-introduction/</a><br><a href="https://www.genymotion.com/" target="_blank" rel="external">https://www.genymotion.com/</a></p>
+</span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/genymotion/" rel="tag">#genymotion</a>
+          
+            <a href="/tags/webview/" rel="tag">#webview</a>
+          
+            <a href="/tags/移动端调试/" rel="tag">#移动端调试</a>
+          
+        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/26/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2016/07/25/ajax-callback-timing/" rel="next" title="浅谈抓取异步请求回调函数执行时间">
+                <i class="fa fa-chevron-left"></i> 浅谈抓取异步请求回调函数执行时间
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/11/04/Interview/" rel="prev" title="关于面试">
-                关于面试 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -303,8 +334,8 @@
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/10/26/My-New-Post/"
-           data-title="My New Post" data-url="http://liupeng110112.github.io/2015/10/26/My-New-Post/">
+      <div class="ds-thread" data-thread-key="2016/12/23/webview-test-environment/"
+           data-title="搭建最舒适的webview调试环境" data-url="http://liupeng110112.github.io/2016/12/23/webview-test-environment/">
       </div>
     
   </div>
@@ -404,7 +435,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何舒适"><span class="nav-number">2.</span> <span class="nav-text">如何舒适</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#采坑"><span class="nav-number">3.</span> <span class="nav-text">采坑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考地址"><span class="nav-number">4.</span> <span class="nav-text">参考地址</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

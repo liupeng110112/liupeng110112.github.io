@@ -223,6 +223,100 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/23/webview-test-environment/" itemprop="url">
+                  搭建最舒适的webview调试环境
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-12-23T00:00:00+08:00" content="2016-12-23">
+              2016-12-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/23/webview-test-environment/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/23/webview-test-environment/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h1 id="前言">前言</h1><p>  最近有个需求在webview里和客户端进行通信（传递webview里面相关的操作数据，做过移动前端的都知道在和客户端打通的时候，经常会出现“编码一分钟，测试一小时“，毫不夸张的说测试的时间是编码的数倍以上。我们常见调试的做法如下：</p>
+<ul>
+<li>安装和客户端相同的环境（比如android studio,xcode等），把相关的代码移植过来，巴拉巴拉一大推配置，各种不兼容 （重新下载），蛋碎，从配置到放弃 (当然这种方式对常用的已经足够了，因为只在当前的代码里执行，但是对于采集的覆盖率太少了)</li>
+<li>直接安装apk到手机上，采用各种工具（比如weinre），配置相关代理，然后盯着手机开始调试了，低着头看手机颈椎还能好好玩耍么，另外被老板看到，感觉一直在玩手机啊！！！</li>
+</ul>
+<p><code>PS：以上是针对webview里面的调试，如果是单纯的移动端调试有很多其他工具。</code></p>
+<h1 id="如何舒适">如何舒适</h1><p>进入正题，由于做的是采集端，所以是想采集哪个数据就想采集哪个数据，比如天猫，京东等电子商务网站（没错选择这些下手是因为他们肯定会有webview）。最好的方式调试应该是这样的：<br>1.有个模拟器安装各种app（不用低头看手机了）<br>2.有个截包工具，将应用的js映射到本地（这里主要是为了将部署代码嵌入进去）<br>3.映射后直接在线调试 （在线编码看效果）<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/23/webview-test-environment/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/25/ajax-callback-timing/" itemprop="url">
                   浅谈抓取异步请求回调函数执行时间
                 </a>
@@ -753,7 +847,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -767,7 +861,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
